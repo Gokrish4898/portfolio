@@ -1,20 +1,102 @@
 @import "tailwindcss";
 
-@theme {
-  --color-primary: #1F2937;
-  --color-secondary: #374151;
-  --color-accent: #2563EB;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
-body {
-  @apply bg-white text-gray-800 antialiased selection:bg-blue-600 selection:text-white transition-colors duration-300;
-  scroll-behavior: smooth;
-}
-
-.dark body {
-  @apply bg-gray-900 text-white selection:bg-blue-500;
+:root {
+  --color-space-black: #080809;
+  --color-carbon-dark: #121214;
+  --color-platinum-light: #F5F5F7;
+  --color-muted-slate: #86868B;
+  --color-volt-neon: #D4FF00;
+  
+  --font-display: "Syne", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  @apply antialiased text-[#0F172A] bg-[#F8FAFC] selection:bg-[#2563EB] selection:text-white transition-colors duration-500;
+}
+
+.dark body {
+  @apply text-[#F5F5F7] bg-[#080809] selection:bg-[#D4FF00] selection:text-[#080809];
+}
+
+/* Custom Typography Utility Classes */
+.text-display-huge {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6.5vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.text-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.text-project-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.text-tech-mono {
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+.text-body-lead {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.6;
+}
+
+.mix-blend-diff {
+  mix-blend-mode: difference;
+}
+
+/* Extra sections padding / empty margins */
+.section-spacer {
+  margin-bottom: clamp(10rem, 25vh, 25rem);
+}
+
+.page-container {
+  padding: 0 clamp(2rem, 8vw, 8rem);
+}
+
+/* Perspective for Tilt items */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 40s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
 }
